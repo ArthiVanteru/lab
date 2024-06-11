@@ -1,0 +1,42 @@
+import java.util.HashMap;
+
+public class UserManager {
+    private HashMap<String, String> usernamePasswordMap;
+    private HashMap<String, String> emailPasswordMap;
+    private HashMap<String, String> phoneNumberPinMap;
+
+    public UserManager() {
+        usernamePasswordMap = new HashMap<>();
+        emailPasswordMap = new HashMap<>();
+        phoneNumberPinMap = new HashMap<>();
+    }
+
+    
+    public void registerUser(String username, String password) {
+        usernamePasswordMap.put(username, password);
+    }
+
+   
+    public void registerUser(String email, String password, boolean isEmail) {
+        emailPasswordMap.put(email, password);
+    }
+
+    public void registerUser(long phoneNumber, String pin) {
+        phoneNumberPinMap.put(String.valueOf(phoneNumber), pin);
+    }
+
+    
+    public boolean authenticate(String username, String password) {
+        return usernamePasswordMap.containsKey(username) && usernamePasswordMap.get(username).equals(password);
+    }
+
+    
+    public boolean authenticate(String email, String password, boolean isEmail) {
+        return emailPasswordMap.containsKey(email) && emailPasswordMap.get(email).equals(password);
+    }
+
+    
+    public boolean authenticate(long phoneNumber, String pin) {
+        return phoneNumberPinMap.containsKey(String.valueOf(phoneNumber)) && phoneNumberPinMap.get(String.valueOf(phoneNumber)).equals(pin);
+    }
+}
